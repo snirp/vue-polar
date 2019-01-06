@@ -1,28 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <polar v-bind="numbersPropObj" v-for="n in 12" :key="n" :item="n">{{n}}</polar>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Polar from './components/Polar.vue'
 
 export default {
+  data(){
+    return {
+      numbersPropObj: {
+        zeroAngle: 270,
+        segments: 12,
+      }
+    }
+  },
   name: 'app',
   components: {
-    HelloWorld
+    Polar
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#app{
+  position: relative;
+  width: 200px;
+  height: 200px;
 }
+
 </style>
