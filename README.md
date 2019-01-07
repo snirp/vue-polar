@@ -31,7 +31,7 @@ The `polar` instances rely on absolute positioning around the center of first su
 ## Constructor Options
 |prop|description|default|options|
 |:---|---|---|---|
-|`zeroAngle`|starting angle relative to default zero angle (=right/3o-clock)|0|`Number`|
+|`zeroAngle`|starting angle relative to default zero angle (=right/3o-clock)|`0`|`Number`|
 |`segments`|equal subdivisions of 360 degrees.|`12`|`Number`|
 |`item`|determines relative rotation, angle is calculated by: item/segments * 360|`0`|`Number`|
 |`offset`|translation in direction of the X-axis of the element|`'100%'`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
@@ -39,7 +39,7 @@ The `polar` instances rely on absolute positioning around the center of first su
 |`extraRotation`|addtional rotation to apply to element|`12`|`Number`|
 |`height`|height of element|`50px`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
 |`width`|width of element|`50px`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
-|`z-index`|value for z-index property|1|`Integer`|
+|`z-index`|value for z-index property|`1`|`Integer`|
 |`customStyles`|Object with CSS properties and values, gets merged with postioning and rotation styles|`{}`|`prop: val`|
 
 The following properties are not allowed in the `customStyles` object:
