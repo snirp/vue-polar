@@ -8,6 +8,7 @@
       rotate(${props.item/props.segments*360+props.zeroAngle}deg) 
       translate(${props.offset}) 
       rotate(-${(props.setStraight && props.item/props.segments*360) + props.zeroAngle + props.extraRotation}deg)`,
+    zIndex: props.zIndex,
   })">
     <slot />
   </div>
