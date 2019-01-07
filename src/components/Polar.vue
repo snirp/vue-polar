@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  name: 'vue-polar',
   props: {
     // Custom style object, to be merged with calculated styles.
     // The following properties will be overwritten by calculated properties:

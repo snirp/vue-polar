@@ -1,10 +1,22 @@
 {
   "name": "vue-polar",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "description": "Vue component to easily create polar layouts (organize in circle/spiral)",
+  "author": {
+    "name": "Roy Prins",
+    "email": "prinsroy@gmail.com"
+  },
+  "repository": "https://github.com/snirp/vue-polar",
+  "bugs": "https://github.com/snirp/vue-polar/issues",
+  "keywords": ["vue", "circle", "layout", "polar", "functional", "component"],
+  "license": "MIT",
+  "private": false,
+  "files": ["dist"],
+  "main": "dist/vuePolar.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "package": "vue-cli-service build --target lib --name vuePolar src/components/Polar.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
