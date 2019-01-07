@@ -15,9 +15,9 @@
         :key="n" 
         :item="n" 
         :segments="5"
-        :zeroAngle="0"
-        :setStraight="false"
-        :extraRotation="60"
+        :zeroangle="0"
+        :setstraight="false"
+        :extrarotation="60"
         :width="'100px'"
         :height="'100px'"
         :offset="'120%'"
@@ -44,9 +44,9 @@
         :width="'100px'"
         :height="'10px'"
         :offset="'40px'"
-        :zeroAngle="270"
-        :setStraight="false"
-        :customStyles="{
+        :zeroangle="270"
+        :setstraight="false"
+        :customstyles="{
           backgroundColor: 'black',
           borderRadius: '999px'
         }"
@@ -58,10 +58,10 @@
         :width="'120px'"
         :height="'6px'"
         :offset="'50px'"
-        :zeroAngle="270"
-        :setStraight="false"
-        :zIndex="99"
-        :customStyles="{
+        :zeroangle="270"
+        :setstraight="false"
+        :zindex="99"
+        :customstyles="{
           backgroundColor: 'black',
           borderRadius: '999px'
         }"
@@ -75,10 +75,10 @@
         :item="n"
         :segments="-30.3" 
         :offset="n*3+'px'"
-        :zIndex="n"
+        :zindex="n"
         :width="(2+n/2)+'px'"
         :height="(2+n/2)+'px'"
-        :customStyles="{
+        :customstyles="{
           borderRadius: '50%',
           backgroundColor: '#'+('000000'+Math.floor(0xFFFFFF*(n/60)).toString(16)).slice(-6),
         }"
@@ -95,7 +95,7 @@ export default {
   created(){
     this.numbersPropsObj = {
       segments: 12,
-      zeroAngle: 270,
+      zeroangle: 270,
       offset: '150px',
       width: '40px',
       height: '40px'
@@ -105,9 +105,9 @@ export default {
       width: '20px',
       height: '5px',
       offset: '110px',
-      setStraight: false,
-      zIndex: 2,
-      customStyles: {
+      setstraight: false,
+      zindex: 2,
+      customstyles: {
         backgroundColor: 'red'
       }
     };
@@ -116,9 +116,9 @@ export default {
       width: '10px',
       height: '3px',
       offset: '115px',
-      setStraight: false,
-      zIndex: 1,
-      customStyles: {
+      setstraight: false,
+      zindex: 1,
+      customstyles: {
         backgroundColor: 'grey'
       }
     }

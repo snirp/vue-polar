@@ -1,9 +1,67 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-polar@0.2.1/dist/vuePolar.umd.min.js"></script>
+  <script src="https://unpkg.com/v-tag-input@0.0.3/dist/v-tag-input.js"></script>
+  <style>
+    .example{
+      position: relative;
+      width: 400px;
+      height: 400px;
+      font-size: 2.5rem;
+    }
+    .clock-number{
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: white;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 <body>
-  <h1>HELLO world</h1>
+
+  <h1>Vue Polar</h1>
+  <div id="app">
+    <div class="example">
+      <polar :item="0" :segments="5">🚀</polar>
+      <polar :item="1" :segments="5">🚌</polar>
+      <polar :item="2" :segments="5">🚲</polar>
+      <polar :item="3" :segments="5">🚕</polar>
+      <polar :item="4" :segments="5">🚤</polar>
+    </div> 
+
+    <div class="example">
+      <polar 
+        v-for="n in 8" 
+        :key="n" 
+        :item="n" 
+        :segments="5"
+        :zeroAngle="0"
+        :setStraight="false"
+        :extraRotation="60"
+        :width="'100px'"
+        :height="'100px'"
+        :offset="'120%'"
+      >
+        <img src="https://cataas.com/cat" width="100%">
+      </polar>
+    </div>
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      components: { polar: vuePolar},
+    })
+  </script>
 </body>
 </html>
 

@@ -6,7 +6,14 @@ Vue-polar is a stateless [functional component](https://vuejs.org/v2/guide/rende
 
 ## Examples
 
-See the examples here
+Some simple demonstations [here](https://snirp.github.io/vue-polar/)
+
++ Emoticons arranged in a circle
++ Random cats with additional rotation
++ A clock, complete with numbers, indicators and hands. 
++ A colorful spiral,
+
+All completely (and easily) done with vue-polar elements. Do you have other examples how you are using vue-polar? Please let me know.
 
 ## Project setup
 ```

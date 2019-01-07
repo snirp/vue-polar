@@ -1,14 +1,14 @@
 <template functional>
-  <div :style="Object.assign({}, props.customStyles, {
+  <div :style="Object.assign({}, props.customstyles, {
     width: props.width,
     height: props.height,
     margin: (-1*parseFloat(props.height)/2) + (props.height.match(/([a-z]*|%)$/)[0]) + ' ' 
           + (-1*parseFloat(props.width)/2) + (props.width.match(/([a-z]*|%)$/)[0]),
     transform: `
-      rotate(${props.item/props.segments*360+props.zeroAngle}deg) 
+      rotate(${props.item/props.segments*360+props.zeroangle}deg) 
       translate(${props.offset}) 
-      rotate(${(props.setStraight && -props.item/props.segments*360 - props.zeroAngle) + props.extraRotation}deg)`,
-    zIndex: props.zIndex,
+      rotate(${(props.setstraight && -props.item/props.segments*360 - props.zeroangle) + props.extrarotation}deg)`,
+    zIndex: props.zindex,
   })">
     <slot />
   </div>
@@ -22,7 +22,7 @@ export default {
     // The following properties will be overwritten by calculated properties:
     //   width, height, margin, transform, zIndex, position, top, left
     // Other CSS properties can be used.
-    customStyles: {
+    customstyles: {
       type: Object,
       default: () => ({})
     },
@@ -42,17 +42,17 @@ export default {
       default: '50px'
     },
     // Starting angle relative to default zero angle (right / east)
-    zeroAngle: {
+    zeroangle: {
       type: Number,
       default: 0
     },
     // Reset polar element's own rotation
-    setStraight: {
+    setstraight: {
       type: Boolean,
       default: true
     },
     // Additional rotation in degrees
-    extraRotation: {
+    extrarotation: {
       type: Number,
       default: 0
     },
@@ -69,7 +69,7 @@ export default {
       type: Number,
       default: 0
     },
-    zIndex: {
+    zindex: {
       type: Number,
       default: 1
     }
