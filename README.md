@@ -37,8 +37,8 @@ The `polar` instances rely on absolute positioning around the center of first su
 |`offset`|translation in direction of the X-axis of the element|`'100%'`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
 |`setStraight`|whether to reset the x-axis of the element to horizontal after translation|`true`|`true`, `false`|
 |`extraRotation`|addtional rotation to apply to element|`12`|`Number`|
-|`height`|height of element|`50px`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
-|`width`|width of element|`50px`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
+|`height`|height of element|`'50px'`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
+|`width`|width of element|`'50px'`|`px`, `em`, `pt`, `%`, `vh`, `vw`|
 |`z-index`|value for z-index property|`1`|`Integer`|
 |`customStyles`|Object with CSS properties and values, gets merged with postioning and rotation styles|`{}`|`prop: val`|
 
