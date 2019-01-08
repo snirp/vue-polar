@@ -1,6 +1,6 @@
 {
   "name": "vue-polar",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Vue component to easily create polar layouts (organize in circle/spiral)",
   "author": {
     "name": "Roy Prins",

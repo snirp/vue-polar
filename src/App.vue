@@ -2,19 +2,18 @@
   <div id="app">
 
     <div class="example">
-      <polar :item="0" :segments="5">🚀</polar>
-      <polar :item="1" :segments="5">🚌</polar>
-      <polar :item="2" :segments="5">🚲</polar>
-      <polar :item="3" :segments="5">🚕</polar>
-      <polar :item="4" :segments="5">🚤</polar>
+      <polar :angle="0/5*360">🚀</polar>
+      <polar :angle="1/5*360">🚌</polar>
+      <polar :angle="2/5*360">🚲</polar>
+      <polar :angle="3/5*360">🚕</polar>
+      <polar :angle="4/5*360">🚤</polar>
     </div>    
 
     <div class="example">
-      <polar 
+      <polar
         v-for="n in 8" 
-        :key="n" 
-        :item="n" 
-        :segments="5"
+        :key="n"
+        :angle="n/5*360"
         :zeroangle="0"
         :setstraight="false"
         :extrarotation="60"
@@ -27,53 +26,48 @@
     </div>
 
     <div class="example">
-      <!-- The hour numbers -->
-      <polar v-bind="numbersPropsObj" v-for="n in 12" :key="n" :item="n">
+      <!-- The numbers -->
+      <polar v-for="n in 12" :key="n" :angle="n/12*360-90" :offset="'150px'" :width="'40px'" :height="'40px'">
         <div class='clock-number'>
           {{n}}
         </div>
       </polar>
       <!-- The hour markers -->
-      <polar v-bind="hoursPropsObj" v-for="n in 12" :key="n" :item="n" />
+      <polar v-bind="hoursPropsObj" v-for="n in 12" :key="n" :angle="n/12*360"></polar>
       <!-- The minute markers -->
-      <polar v-bind="minutesPropsObj" v-for="n in 60" :key="n" :item="n" />
+      <polar v-bind="minutesPropsObj" v-for="n in 60" :key="n" :angle="n/60*360"></polar>
       <!-- The hour hand -->
-      <polar 
-        :item="9"
-        :segments="60" 
+      <polar
+        :angle="330"
         :width="'100px'"
         :height="'10px'"
         :offset="'40px'"
-        :zeroangle="270"
         :setstraight="false"
         :customstyles="{
           backgroundColor: 'black',
           borderRadius: '999px'
         }"
-      />
+      ></polar>
       <!-- The minute hand -->
       <polar 
-        :item="51"
-        :segments="60" 
+        :angle="240"
         :width="'120px'"
         :height="'6px'"
         :offset="'50px'"
-        :zeroangle="270"
         :setstraight="false"
         :zindex="99"
         :customstyles="{
           backgroundColor: 'black',
           borderRadius: '999px'
         }"
-      />
+      ></polar>
     </div>
 
     <div class="example">
       <polar
         v-for="n in 60" 
         :key="n" 
-        :item="n"
-        :segments="-30.3" 
+        :angle="n/-30.3*360"
         :offset="n*3+'px'"
         :zindex="n"
         :width="(2+n/2)+'px'"
@@ -93,15 +87,7 @@ import Polar from './components/Polar.vue'
 
 export default {
   created(){
-    this.numbersPropsObj = {
-      segments: 12,
-      zeroangle: 270,
-      offset: '150px',
-      width: '40px',
-      height: '40px'
-    };
     this.hoursPropsObj = {
-      segments: 12,
       width: '20px',
       height: '5px',
       offset: '110px',
@@ -112,7 +98,6 @@ export default {
       }
     };
     this.minutesPropsObj = {
-      segments: 60,
       width: '10px',
       height: '3px',
       offset: '115px',

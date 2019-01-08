@@ -5,9 +5,9 @@
     margin: (-1*parseFloat(props.height)/2) + (props.height.match(/([a-z]*|%)$/)[0]) + ' ' 
           + (-1*parseFloat(props.width)/2) + (props.width.match(/([a-z]*|%)$/)[0]),
     transform: `
-      rotate(${props.item/props.segments*360+props.zeroangle}deg) 
+      rotate(${props.angle}deg) 
       translate(${props.offset}) 
-      rotate(${(props.setstraight && -props.item/props.segments*360 - props.zeroangle) + props.extrarotation}deg)`,
+      rotate(${props.extrarotation - (props.setstraight && props.angle)}deg)`,
     zIndex: props.zindex,
   })">
     <slot />
@@ -41,11 +41,6 @@ export default {
       type: [Number, String],
       default: '50px'
     },
-    // Starting angle relative to default zero angle (right / east)
-    zeroangle: {
-      type: Number,
-      default: 0
-    },
     // Reset polar element's own rotation
     setstraight: {
       type: Boolean,
@@ -56,16 +51,8 @@ export default {
       type: Number,
       default: 0
     },
-    // Number of equal subdivisions of 360 degrees. Can be a decimal number.
-    // A positive number: clockwise rotation
-    // A negative number: counter-clockwise rotation 
-    segments: {
-      type: Number,
-      default: 12
-    },
-    // Cardinal number that determines relative rotation
-    // Relative angle is calculated by: item/segments * 360
-    item: {
+    // Angle of polar rotation, clockwise from the right
+    angle: {
       type: Number,
       default: 0
     },
