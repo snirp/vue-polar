@@ -6,22 +6,75 @@
   <script src="https://unpkg.com/vue-polar@latest/dist/vuePolar.umd.min.js"></script>
   <style>
     html {
+      margin: 0;
       color: #444;
       line-height: 1.7;
       font-family: 'helvetica neue', Arial, Helvetica, sans-serif;
+    }
+    body {
+      padding: 0;
+      margin: 0;
     }
     main {
       max-width: 800px;
       margin: 0 auto;
     }
+    h1, h2 {
+      color:rgb(65, 90, 116);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 200;
+    }
     h2 {
       margin-top: 6rem;
+      border-bottom: 1px solid rgb(65, 90, 116);
+    }
+    code {
+      color: rgb(119, 39, 39);
+      font-size: 0.9rem;
     }
     pre {
       padding: 1rem;
       background-color: whitesmoke;
       margin: 2rem 0;
     }
+    footer {
+      margin: 4rem 0 0;
+      padding: 2rem;
+      text-align: center;
+      background-color: #151618;
+      color: white;
+      font-weight: 200;
+    }
+    footer a {
+      color: inherit;
+    }
+    .sample{
+      position: relative;
+      margin: 2em 0;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .flex-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem;
+      font-weight: 100;
+      text-decoration: none;
+      transition: all 0.5s;
+      color: white;
+    }
+    .black-bg{ background-color: rgb(39, 39, 39); }
+    .black-bg:hover{ background-color: black; }
+    .red-bg{ background-color: #db3b3b; }
+    .red-bg:hover{ background-color: #cb3837; }
+    .green-bg{ background-color: #35a826; }
+    .green-bg:hover{ background-color: #2e8d21;}
+    .blue-bg{ background-color: #262fa8; }
+    .blue-bg:hover{ background-color: #1b2180;}
     .clock-number{
       width: 100%;
       height: 100%;
@@ -39,18 +92,29 @@
   <main>
     <h1>Vue Polar examples</h1>
     <p>
-      This page contains a few examples of Vue Polar complete with code samples. Add the following 
-      lines to your <code>&lt;head&gt;</code> section to start using Vue Polar:
+      This page contains a few examples of Vue Polar complete with code samples. Vue Polar is a VueJS component,
+      that can be used to easily create polar (circular, spiral) layouts.
+    </p>
+    <p>
+      These are all working examples, so you can inspect and play with the source code. Add the following lines 
+      to your <code>&lt;head&gt;</code> section to start using Vue Polar:
     </p>
       <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
 &lt;script src="https://unpkg.com/vue-polar@latest/dist/vuePolar.umd.min.js"&gt;&lt;/script&gt;</code></pre>
-    <ul>
-      <li>Documentation and source code on Github: <a href="https://github.com/snirp/vue-polar">github.com/snirp/vue-polar</a></li>
-      <li>NPM package: <a href="https://www.npmjs.com/package/vue-polar">npmjs.com/package/vue-polar</a></li>
-    </ul>
+
+    <div class="flex-row">
+      <a href="https://github.com/snirp/vue-polar/#readme" class="button blue-bg">Documentation</a>
+      <a href="https://github.com/snirp/vue-polar" class="button black-bg">Github source</a>
+      <a href="https://github.com/snirp/vue-polar/issues" class="button green-bg">Issues</a>
+      <a href="https://www.npmjs.com/package/vue-polar" class="button red-bg">NPM package</a>
+    </div>
     <segment>
       <h2>Simple circular arrangement</h2>
-      <div style="position:relative; height:200px; font-size: 2rem;" id="app1">
+      <p>
+        Basic example, using all the default values, except for the angle. The Polar component has a 
+        single slot for custom content.
+      </p>
+      <div style="height:200px; font-size: 2rem;" class="sample" id="app1">
         <polar :angle="0/5*360">🚀</polar>
         <polar :angle="1/5*360">🚌</polar>
         <polar :angle="2/5*360">🚲</polar>
@@ -68,7 +132,15 @@
 
     <segment>
       <h2>Random cat pictures</h2>
-      <div style="position:relative; height:400px;" id="app2">
+      <p>
+        The slot holds a random cat picture. This example sets part of the props by using a <code>propsobject</code> and 
+        <code>v-bind</code>. Note that <code>setstraight</code> is set to <code>false</code>, preventing the element to 
+        be rotated back to horizontal.
+      </p>
+      <p>
+        Several Polar instances are generated in a <code>v-for</code> loop. The angle is derived from the loop counter.
+      </p>
+      <div style="height:400px;" class="sample" id="app2">
         <polar 
           v-for="n in 6"  
           :key="n" 
@@ -100,10 +172,18 @@
 
     <segment>
       <h2>Colorful spiral</h2>
-
-      <div style="position:relative; height:400px;" id="app3">
+      <p>
+        You can get clever in <code>v-for</code> loops, and dynamically set various props.
+        Here is an example that adjusts: <code>size</code>, <code>angle</code>, <code>offset</code> and <code>color</code> 
+        for every loop. Using a negative value for the angle, gives a counter-clockwise rotation.
+      </p>
+      <p>
+        Vue Polar is a stateless "functional component", meaning that is does not have the overhead of a Vue component. 
+        That should make it <strong>real quick</strong> and there should be no noticeable lag from creating 1,000 instances.
+      </p>
+      <div style="height:500px;" class="sample" id="app3">
         <polar
-          v-for="n in 60" 
+          v-for="n in 86" 
           :key="n" 
           :angle="-n/32.5*360"
           :offset="3*n+'px'"
@@ -112,7 +192,7 @@
           :height="(2+n/2)+'px'"
           :customstyles="{
             borderRadius: '50%',
-            backgroundColor: '#'+('000000'+Math.floor(0xFFFFFF*(n/60)).toString(16)).slice(-6),
+            backgroundColor: '#'+('000000'+Math.floor(0xFFFFFF*(n/86)).toString(16)).slice(-6),
           }"
         />
       </div>
@@ -129,8 +209,13 @@
 
     <segment>
       <h2>A clock (that works)</h2>
-
-      <div style="position:relative; height:400px;" id="app4">
+      <p>
+        The template of this clock consists strictly of six (looped) Vue Polar instances, with the <code>zindex</code>
+        taking care that they are presented in the correct order. To get the 
+        angle for the hands, we need to correct by <code>-90</code> degrees: CSS rotation starts from the right, 
+        where a clock starts from the top.
+      </p>
+      <div style="height:400px;" class="sample" id="app4">
         <!-- numbers -->
         <polar v-for="n in 12" :key="n" :angle="n*30-90" :offset="'150px'" :width="'40px'" :height="'40px'">
           <div class='clock-number'>
@@ -179,6 +264,7 @@
               height: '6px',
               offset: '40px',
               setstraight: false,
+              zindex: 3,
               customstyles: { backgroundColor: 'black' }
             },
             this.minuteHandPropsObj = {
@@ -186,6 +272,7 @@
               height: '4px',
               offset: '50px',
               setstraight: false,
+              zindex: 4,
               customstyles: { backgroundColor: 'black' }
             },
             this.secondHandPropsObj = {
@@ -193,6 +280,7 @@
               height: '2px',
               offset: '50px',
               setstraight: false,
+              zindex: 5,
               customstyles: { backgroundColor: 'red' }
             }
           },
@@ -222,6 +310,10 @@
     </segment>
 
   </main>
+  <footer>
+    <p>Created and maintained by <a href="https://github.com/snirp">Roy Prins</a>.</p> 
+    <p>License source code and examples: <a href="https://raw.githubusercontent.com/snirp/vue-polar/master/LICENSE">MIT open source license</a></p>
+  </footer>
 </body>
 </html>
 
