@@ -3,19 +3,24 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-polar@0.3.0/dist/vuePolar.umd.min.js"></script>
+  <script src="https://unpkg.com/vue-polar@latest/dist/vuePolar.umd.min.js"></script>
   <style>
+    html {
+      color: #444;
+      line-height: 1.7;
+      font-family: 'helvetica neue', Arial, Helvetica, sans-serif;
+    }
     main {
-      max-width: 600px;
+      max-width: 800px;
       margin: 0 auto;
     }
-    h1 {
-      text-align: center;
+    h2 {
+      margin-top: 6rem;
     }
-    .example{
-      position: relative;
-      height: 400px;
-      font-size: 2.5rem;
+    pre {
+      padding: 1rem;
+      background-color: whitesmoke;
+      margin: 2rem 0;
     }
     .clock-number{
       width: 100%;
@@ -32,138 +37,191 @@
 </head>
 <body>
   <main>
-  <h1>Vue Polar examples</h1>
-  <div id="app">
-    <segment class="intro">
+    <h1>Vue Polar examples</h1>
+    <p>
+      This page contains a few examples of Vue Polar complete with code samples. Add the following 
+      lines to your <code>&lt;head&gt;</code> section to start using Vue Polar:
+    </p>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/vue-polar@latest/dist/vuePolar.umd.min.js"&gt;&lt;/script&gt;</code></pre>
+    <ul>
+      <li>Documentation and source code on Github: <a href="https://github.com/snirp/vue-polar">github.com/snirp/vue-polar</a></li>
+      <li>NPM package: <a href="https://www.npmjs.com/package/vue-polar">npmjs.com/package/vue-polar</a></li>
+    </ul>
+    <segment>
       <h2>Simple circular arrangement</h2>
-      <div class="example" id="example1">
-        <polar :item="0" :segments="5">🚀</polar>
-        <polar :item="1" :segments="5">🚌</polar>
-        <polar :item="2" :segments="5">🚲</polar>
-        <polar :item="3" :segments="5">🚕</polar>
-        <polar :item="4" :segments="5">🚤</polar>
+      <div style="position:relative; height:200px; font-size: 2rem;" id="app1">
+        <polar :angle="0/5*360">🚀</polar>
+        <polar :angle="1/5*360">🚌</polar>
+        <polar :angle="2/5*360">🚲</polar>
+        <polar :angle="3/5*360">🚕</polar>
+        <polar :angle="4/5*360">🚤</polar>
       </div>
       <script>
-        
+        new Vue({
+          el: '#app1',
+          components: { polar: vuePolar},
+        })
       </script>
+      <script src="https://gist.github.com/snirp/5f24f6b179c1729855b5943b1b6563c4.js"></script>
     </segment>
-    <div class="example">
-      <polar 
-        v-for="n in 8" 
-        :key="n" 
-        :item="n" 
-        :segments="5"
-        :zeroangle="0"
-        :setstraight="false"
-        :extrarotation="60"
-        :width="'100px'"
-        :height="'100px'"
-        :offset="'120%'"
-      >
-        <img src="https://cataas.com/cat" width="100%">
-      </polar>
-    </div>
 
-    <div class="example">
-      <!-- The hour numbers -->
-      <polar v-bind="numbersPropsObj" v-for="n in 12" :key="n" :item="n">
-        <div class='clock-number'>
-          {{n}}
-        </div>
-      </polar>
-      <!-- The hour markers -->
-      <polar v-bind="hoursPropsObj" v-for="n in 12" :key="n" :item="n"></polar>
-      <!-- The minute markers -->
-      <polar v-bind="minutesPropsObj" v-for="n in 60" :key="n" :item="n"></polar>
-      <!-- The hour hand -->
-      <polar 
-      :item="9"
-      :segments="60" 
-      :width="'100px'"
-      :height="'10px'"
-      :offset="'40px'"
-      :zeroangle="270"
-      :setstraight="false"
-      :customstyles="{
-        backgroundColor: 'black',
-        borderRadius: '999px'
-      }"
-    /></polar>
+    <segment>
+      <h2>Random cat pictures</h2>
+      <div style="position:relative; height:400px;" id="app2">
+        <polar 
+          v-for="n in 6"  
+          :key="n" 
+          :angle="n/6*360" 
+          v-bind="catPropsObj"
+        >
+          <img src="https://cataas.com/cat" width="100%">
+        </polar>
+      </div>
 
-    <!-- The minute hand -->
-    <polar 
-      :item="51"
-      :segments="60" 
-      :width="'120px'"
-      :height="'6px'"
-      :offset="'50px'"
-      :zeroangle="270"
-      :setstraight="false"
-      :zindex="99"
-      :customstyles="{
-        backgroundColor: 'black',
-        borderRadius: '999px'
-      }"
-    ></polar>
-     
-    </div>
-
-    <div class="example">
-      <polar
-        v-for="n in 60" 
-        :key="n" 
-        :item="n"
-        :segments="-30.3" 
-        :offset="n*3+'px'"
-        :zindex="n"
-        :width="(2+n/2)+'px'"
-        :height="(2+n/2)+'px'"
-        :customstyles="{
-          borderRadius: '50%',
-          backgroundColor: '#'+('000000'+Math.floor(0xFFFFFF*(n/60)).toString(16)).slice(-6),
-        }"
-      />
-    </div>
-
-  </div>
-</main>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      created(){
-        this.numbersPropsObj = {
-          segments: 12,
-          zeroangle: 270,
-          offset: '150px',
-          width: '40px',
-          height: '40px'
-        };
-        this.hoursPropsObj = {
-          segments: 12,
-          width: '20px',
-          height: '5px',
-          offset: '110px',
-          setstraight: false,
-          zindex: 2,
-          customstyles: {
-            backgroundColor: 'red'
+      <script>
+        new Vue({
+          el: '#app2',
+          components: { polar: vuePolar},
+          created(){
+            this.catPropsObj = {
+              setstraight: false,
+              extrarotation: 60,
+              width: '100px',
+              height: '100px',
+              offset: '120%'
+            }
           }
-        };
-        this.minutesPropsObj = {
-          segments: 60,
-          width: '10px',
-          height: '3px',
-          offset: '115px',
-          setstraight: false,
-          zindex: 1,
-          customstyles: {
-            backgroundColor: 'grey'
+        })
+      </script>
+
+      <script src="https://gist.github.com/snirp/c67072b1e44c667db2fff7473319687e.js"></script>
+    </segment>
+
+    <segment>
+      <h2>Colorful spiral</h2>
+
+      <div style="position:relative; height:400px;" id="app3">
+        <polar
+          v-for="n in 60" 
+          :key="n" 
+          :angle="-n/32.5*360"
+          :offset="3*n+'px'"
+          :zindex="n"
+          :width="(2+n/2)+'px'"
+          :height="(2+n/2)+'px'"
+          :customstyles="{
+            borderRadius: '50%',
+            backgroundColor: '#'+('000000'+Math.floor(0xFFFFFF*(n/60)).toString(16)).slice(-6),
+          }"
+        />
+      </div>
+
+      <script>
+        new Vue({
+          el: '#app3',
+          components: { polar: vuePolar},
+        })
+      </script>
+
+      <script src="https://gist.github.com/snirp/7b58cac19451187cc6347a6ef7731225.js"></script>
+    </segment>
+
+    <segment>
+      <h2>A clock (that works)</h2>
+
+      <div style="position:relative; height:400px;" id="app4">
+        <!-- numbers -->
+        <polar v-for="n in 12" :key="n" :angle="n*30-90" :offset="'150px'" :width="'40px'" :height="'40px'">
+          <div class='clock-number'>
+            {{n}}
+          </div>
+        </polar>
+        <!-- minute markers -->
+        <polar v-bind="minutesPropsObj" v-for="n in 60" :key="n" :angle="n/60*360"></polar>
+        <!-- hour markers -->
+        <polar v-bind="hoursPropsObj" v-for="n in 12" :key="n" :angle="n/12*360"></polar>
+        <!-- hour hand -->
+        <polar v-bind="hourHandPropsObj" :angle="time.hours/12*360 + time.minutes/2 - 90"></polar>
+        <!-- minute hand -->
+        <polar v-bind="minuteHandPropsObj" :angle="time.minutes/60*360 + time.seconds/10 - 90"></polar>
+        <!-- second hand -->
+        <polar v-bind="secondHandPropsObj" :angle="time.seconds*6 - 90"></polar>
+      </div>
+
+      <script>
+        new Vue({
+          el: '#app4',
+          components: { polar: vuePolar},
+          created(){
+            this.minutesPropsObj = {
+              width: '10px',
+              height: '3px',
+              offset: '115px',
+              setstraight: false,
+              zindex: 1,
+              customstyles: {
+                backgroundColor: 'grey'
+              }
+            };
+            this.hoursPropsObj = {
+              width: '20px',
+              height: '5px',
+              offset: '110px',
+              setstraight: false,
+              zindex: 2,
+              customstyles: {
+                backgroundColor: 'red'
+              }
+            };
+            this.hourHandPropsObj = {
+              width: '100px',
+              height: '6px',
+              offset: '40px',
+              setstraight: false,
+              customstyles: { backgroundColor: 'black' }
+            },
+            this.minuteHandPropsObj = {
+              width: '120px',
+              height: '4px',
+              offset: '50px',
+              setstraight: false,
+              customstyles: { backgroundColor: 'black' }
+            },
+            this.secondHandPropsObj = {
+              width: '130px',
+              height: '2px',
+              offset: '50px',
+              setstraight: false,
+              customstyles: { backgroundColor: 'red' }
+            }
+          },
+          data: {
+            time: {
+              hours: 0,
+              minutes: 0,
+              seconds: 0
+            }
+          },
+          methods: {
+            updateTime(time) {
+              this.time = {
+                hours: time.getHours(),
+                minutes: time.getMinutes(),
+                seconds: time.getSeconds()
+              }
+            }
+          },
+          mounted(){
+            setInterval(()=>{this.updateTime(new Date())}, 1000)
           }
-        }
-      },
-      components: { polar: vuePolar},
-    })
-  </script>
+        })
+      </script>
+
+      <script src="https://gist.github.com/snirp/021941a2d9b3d4c4c904919c9a8140ce.js"></script>
+    </segment>
+
+  </main>
 </body>
 </html>
 

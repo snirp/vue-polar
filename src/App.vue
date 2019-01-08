@@ -14,12 +14,7 @@
         v-for="n in 8" 
         :key="n"
         :angle="n/5*360"
-        :zeroangle="0"
-        :setstraight="false"
-        :extrarotation="60"
-        :width="'100px'"
-        :height="'100px'"
-        :offset="'120%'"
+        v-bind="propsObject"
       >
         <img src="https://cataas.com/cat" width="100%">
       </polar>
@@ -87,6 +82,13 @@ import Polar from './components/Polar.vue'
 
 export default {
   created(){
+    this.catPropsObj = {
+      setstraight: false,
+      extrarotation: 60,
+      width: '100px',
+      height: '100px',
+      offset: '120%'
+    },
     this.hoursPropsObj = {
       width: '20px',
       height: '5px',
